@@ -39,8 +39,8 @@ guestSchema.index({ createdAt: -1 });
 
 const Guest = mongoose.model("Guest", guestSchema);
 console.log("🌱 Environment Key MONGO_URI ada?", 'MONGO_URI' in process.env);
-console.log("🌐 Nilai process.env.MONGO_URL:", process.env.MONGO_URI);
-console.log("🔍 ENV MONGO_URL:", process.env.MONGO_URI);
+console.log("🌐 Nilai process.env.MONGO_URI:", process.env.MONGO_URI);
+console.log("🔍 ENV MONGO_URI:", process.env.MONGO_URI);
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
