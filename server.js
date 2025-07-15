@@ -24,16 +24,6 @@ app.use(bodyParser.json());
 // })
 // .catch((err) => console.error("❌ Connection error:", err));
 
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("✅ Connected to MongoDB Atlas via Railway");
-  return Guest.createIndexes();
-})
-.catch((err) => console.error("❌ Connection error:", err));
-
 // Schema Data Tamu
 const guestSchema = new mongoose.Schema({
   name: { type: String, trim: true }, // Tambahkan trim
@@ -47,6 +37,18 @@ guestSchema.index({ attendance: 1 });
 guestSchema.index({ createdAt: -1 });
 
 const Guest = mongoose.model("Guest", guestSchema);
+
+console.log("🔍 ENV MONGO_URL:", process.env.MONGO_URL);
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log("✅ Connected to MongoDB Atlas via Railway");
+  return Guest.createIndexes();
+})
+.catch((err) => console.error("❌ Connection error:", err));
 
 // API untuk RSVP
 app.post("/api/rsvp", async (req, res) => {
