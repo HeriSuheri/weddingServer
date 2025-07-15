@@ -37,7 +37,8 @@ guestSchema.index({ attendance: 1 });
 guestSchema.index({ createdAt: -1 });
 
 const Guest = mongoose.model("Guest", guestSchema);
-
+console.log("🌱 Environment Key MONGO_URL ada?", 'MONGO_URL' in process.env);
+console.log("🌐 Nilai process.env.MONGO_URL:", process.env.MONGO_URL);
 console.log("🔍 ENV MONGO_URL:", process.env.MONGO_URL);
 
 mongoose.connect(process.env.MONGO_URL, {
