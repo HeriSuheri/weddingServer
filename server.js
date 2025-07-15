@@ -10,17 +10,27 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Koneksi MongoDB
-mongoose.connect(
-  "mongodb+srv://undangan_user:Johndev123%21@cluster0.m4elrjf.mongodb.net/weddingDB?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-)
+// mongoose.connect(
+//   "mongodb+srv://undangan_user:Johndev123%21@cluster0.m4elrjf.mongodb.net/weddingDB?retryWrites=true&w=majority",
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   }
+// )
+// .then(() => {
+//   console.log("✅ Connected to MongoDB Atlas");
+//   // Pastikan index dibuat setelah koneksi berhasil
+//   return Guest.createIndexes(); 
+// })
+// .catch((err) => console.error("❌ Connection error:", err));
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => {
-  console.log("✅ Connected to MongoDB Atlas");
-  // Pastikan index dibuat setelah koneksi berhasil
-  return Guest.createIndexes(); 
+  console.log("✅ Connected to MongoDB Atlas via Railway");
+  return Guest.createIndexes();
 })
 .catch((err) => console.error("❌ Connection error:", err));
 
