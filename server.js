@@ -7,7 +7,12 @@ const bodyParser = require("body-parser");
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "https://mywedding2025.vercel.app", 
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 app.use(bodyParser.json());
 
 // Koneksi MongoDB
